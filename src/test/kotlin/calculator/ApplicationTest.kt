@@ -22,6 +22,34 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `커스텀 문자열만 입력되었을 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("//123123\n")}
+        }
+    }
+
+    @Test
+    fun `커스텀 문자열을 받고 구분자로 끝났을 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("//123123\n;")}
+        }
+    }
+
+    @Test
+    fun `음수가 입력되었을 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("-2:3:3")}
+        }
+    }
+
+    @Test
+    fun `0이 입력되었을 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("0:3:3")}
+        }
+    }
+
     override fun runMain() {
         main()
     }
