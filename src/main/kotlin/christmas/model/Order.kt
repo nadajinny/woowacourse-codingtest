@@ -1,7 +1,6 @@
 package christmas.model
 
 import christmas.util.ErrorMessages
-import jdk.internal.net.http.common.Pair.pair
 
 class Order(
     input: String
@@ -45,5 +44,18 @@ class Order(
 
     fun validateDrinkOnly() {
         if(menus.keys.all { it.category == "음료" }) throw IllegalArgumentException(ErrorMessages.CANNOT_ORDER_ONLY_DRINK)
+    }
+
+    fun getALLorder() : Map<Menu, Int> {
+        return menus
+    }
+
+    fun getTotalPrice() : Int {
+        var totalprice = 0
+        menus.forEach { (menu, i) ->
+            totalprice += menu.price * i
+        }
+
+        return totalprice
     }
 }
