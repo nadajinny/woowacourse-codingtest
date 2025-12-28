@@ -2,6 +2,6 @@ package christmas.view
 
 import camp.nextstep.edu.missionutils.Console
 
-class InputViewConsole: InputView {
+class ConsoleInputView: InputView {
     override fun readLine(): String = Console.readLine() ?: ""
 }

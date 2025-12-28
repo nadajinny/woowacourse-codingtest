@@ -1,5 +1,13 @@
 package christmas
 
+import christmas.controller.EventPlannerController
+import christmas.view.ConsoleInputView
+import christmas.view.ConsoleOutputView
+
 fun main() {
-    TODO("프로그램 구현")
+    val input = ConsoleInputView()
+    val output = ConsoleOutputView()
+
+    val controller = EventPlannerController(input, output)
+    controller.run()
 }
