@@ -8,4 +8,7 @@ class Date(
     init {
         require(date in 1..31) { ErrorMessages.INVALID_DATE }
     }
+    fun getDate(): Int {
+        return date
+    }
 }

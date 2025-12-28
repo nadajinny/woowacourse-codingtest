@@ -1,9 +1,11 @@
 package christmas.view
 
 interface OutputView {
-    fun printOpening() {}
+    fun printOpening(i: String) {}
     fun nextLine() {}
-    fun printOpeningDate() {}
     fun printError(e: String) {}
-    fun printOpeningOrder() {}
+    fun printOpeningEvent(i: Int) {}
+    fun printEachMenu(menu: String, count: Int) {}
+    fun printPrice(price: Int) {}
+
 }
