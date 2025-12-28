@@ -6,4 +6,6 @@ object OutputMessages {
     const val PROMPT_OPENING_ORDER = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)"
     const val PROMPT_OPENING_MENU_LIST = "<주문 메뉴>"
     const val PROMPT_OPENING_PRICE_BEFORE_DISCOUNT = "<할인 전 총주문 금액>"
+    const val PROMPT_OPENING_IS_GIFT = "<증정 메뉴>"
+    const val PROMPT_OPENING_BENEFIT_LIST = "<혜택 내역>"
 }

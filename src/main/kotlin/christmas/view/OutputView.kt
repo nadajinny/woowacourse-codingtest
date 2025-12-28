@@ -7,5 +7,5 @@ interface OutputView {
     fun printOpeningEvent(i: Int) {}
     fun printEachMenu(menu: String, count: Int) {}
     fun printPrice(price: Int) {}
-
+    fun printSpecificBenefit(i : String, price: Int) {}
 }

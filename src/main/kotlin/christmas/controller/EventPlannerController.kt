@@ -1,6 +1,7 @@
 package christmas.controller
 
 import christmas.model.Date
+import christmas.model.EventPlanner
 import christmas.model.Order
 import christmas.util.ErrorMessages
 import christmas.util.OutputMessages
@@ -15,28 +16,66 @@ class EventPlannerController(
         output.printOpening(OutputMessages.PROMPT_OPENING)
         val date = inputDate()
         val order = inputOrder()
-        showEvent(date, order)
+        val planner = EventPlanner(date, order)
+        showEvent(date, order, planner)
     }
 
-    private fun showEvent(date: Date, order: Order) {
+    private fun showEvent(date: Date, order: Order, planner: EventPlanner) {
         output.printOpeningEvent(date.getDate())
         output.nextLine()
         MenuList(order)
         val beforediscount = beforeDiscount(order)
         output.nextLine()
-        GiftMenu()
+        GiftMenu(planner)
         output.nextLine()
-        BenefitList()
+        val (discount, benefit) = BenefitList(planner)
         output.nextLine()
-        BenefitPrice()
+        BenefitPrice(benefit)
         output.nextLine()
         ExpectedPrice()
         output.nextLine()
         EventBadge()
     }
 
-    private fun GiftMenu() {
+    private fun BenefitPrice(price : Int) {
+        output.printOpening()
+    }
 
+    private fun BenefitList(planner: EventPlanner) : Pair<Int, Int> {
+        var discount = 0
+        var benefit = 0
+        output.printOpening(OutputMessages.PROMPT_OPENING_BENEFIT_LIST)
+        if(planner.isChristmasDDay) {
+            benefit += planner.ChristmasDDayBenefit()
+            discount += planner.ChristmasDDayBenefit()
+            output.printSpecificBenefit("크리스마스 디데이 할인", benefit)
+        }
+        if(planner.isWeekDay) {
+            benefit += planner.WeekDayBenefit()
+            discount += planner.WeekDayBenefit()
+            output.printSpecificBenefit("평일 할인", planner.WeekDayBenefit())
+        }
+        if(planner.isWeekEndDay) {
+            benefit += planner.WeekEndBenefit()
+            discount += planner.WeekEndBenefit()
+            output.printSpecificBenefit("주말 할인", planner.WeekEndBenefit())
+        }
+        if(planner.isStaredDay) {
+            benefit += planner.SpecialBenefit()
+            discount += planner.SpecialBenefit()
+            output.printSpecificBenefit("특별 할인", planner.SpecialBenefit())
+        }
+        if(planner.isChampange) {
+            benefit += planner.GiftBenefit()
+            output.printSpecificBenefit("증정 이벤트", planner.GiftBenefit())
+        }
+        if(benefit == 0) output.printOpening("없음")
+        return discount to benefit
+    }
+    private fun GiftMenu(planner: EventPlanner) {
+        output.printOpening(OutputMessages.PROMPT_OPENING_IS_GIFT)
+        if(planner.isChampange) output.printOpening("샴페인 1개")
+        else output.printOpening("없음")
     }
     private fun MenuList(order: Order) {
         output.printOpening(OutputMessages.PROMPT_OPENING_MENU_LIST)

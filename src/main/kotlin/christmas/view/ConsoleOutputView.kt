@@ -28,4 +28,8 @@ class ConsoleOutputView: OutputView {
     override fun printPrice(price: Int) {
         println(DecimalFormat("#,###").format(price)+"원")
     }
+
+    override fun printSpecificBenefit(i: String, price: Int) {
+        println("${i}: -${DecimalFormat("#,###".format(price))}원")
+    }
 }
