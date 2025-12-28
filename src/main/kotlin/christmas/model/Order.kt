@@ -23,7 +23,7 @@ class Order(input: String) {
             result[Menu.from(menu)]=count
         }
         require(result.values.sum()<21){ ErrorMessages.INVALID_ORDER }
-        require(result.keys.all { it.category != MenuCategory.DRINK}) { ErrorMessages.INVALID_ORDER }
+        require(result.keys.any { it.category != MenuCategory.DRINK}) { ErrorMessages.INVALID_ORDER }
         return result
     }
 }

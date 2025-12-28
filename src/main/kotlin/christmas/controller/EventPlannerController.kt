@@ -28,7 +28,7 @@ class EventPlannerController(
         output.nextLine()
         GiftMenu(planner)
         output.nextLine()
-        val (discount, benefit) = BenefitList(planner)
+        val (discount, benefit) = BenefitList(beforediscount,planner)
         output.nextLine()
         BenefitPrice(benefit)
         output.nextLine()
@@ -51,10 +51,13 @@ class EventPlannerController(
         output.printPrice(-price)
     }
 
-    private fun BenefitList(planner: EventPlanner) : Pair<Int, Int> {
+    private fun BenefitList(before: Int, planner: EventPlanner) : Pair<Int, Int> {
         var discount = 0
         var benefit = 0
         output.printOpening(OutputMessages.PROMPT_OPENING_BENEFIT_LIST)
+        if(before < 10_000) { output.printOpening("없음")
+        return discount to benefit
+        }
         if(planner.isChristmasDDay) {
             benefit += planner.ChristmasDDayBenefit()
             discount += planner.ChristmasDDayBenefit()
