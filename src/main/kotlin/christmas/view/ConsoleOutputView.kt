@@ -40,4 +40,33 @@ class ConsoleOutputView: OutputView {
         if(isGift) println(OutputMessages.PROMPT_GIFT_YES)
         else println(OutputMessages.PROMPT_NONE)
     }
+
+    override fun printOpeningBenefit() {
+        println(OutputMessages.PROMPT_BENEFIT_LIST)
+
+    }
+
+    override fun printTotalBenefit(which: String, price: Int) {
+        print("${which}: ")
+        println(DecimalFormat("#,###").format(price)+ OutputMessages.PROMPT_WON)
+    }
+
+    override fun printNone() {
+        println(OutputMessages.PROMPT_NONE)
+    }
+
+    override fun printTotalDiscount(price: Int) {
+        println(OutputMessages.PROMPT_OPENING_DISCOUNT)
+        println(DecimalFormat("#,###").format(price)+ OutputMessages.PROMPT_WON)
+    }
+
+    override fun printAfterDiscountPrice(totalPrice: Int, discount: Int) {
+        println(OutputMessages.PROMPT_OPENING_AFTER_DISCOUNT_PRICE)
+        println(DecimalFormat("#,###").format(totalPrice+discount)+ OutputMessages.PROMPT_WON)
+    }
+
+    override fun printBadget(badge: String) {
+        println(OutputMessages.PROMPT_OPENING_BADGE)
+        println(badge)
+    }
 }

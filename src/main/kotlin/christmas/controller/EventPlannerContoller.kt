@@ -27,18 +27,33 @@ class EventPlannerContoller(
         println()
 
         output.printGift(eventplanner.checkGift())
+
+        println()
+        eventplanner.checkTotalBenefit()
+
+        println()
+
+        val discount = eventplanner.getTotalDiscount()
+
+        output.printAfterDiscountPrice(eventplanner.order.getTotalPrice(),discount)
+
+        println()
+
+        output.printBadget(eventplanner.getBadge())
     }
 
     fun collectUserInput(): EventPlanner {
         output.printRequestDate()
         val read_date = input.readLine()
-        if(read_date.trim().toIntOrNull() == null) throw IllegalArgumentException(ErrorMessages.WRONG_DATE_RANGE)
+        if(read_date.trim().toIntOrNull() == null) {
+            println(ErrorMessages.WRONG_DATE_RANGE)
+            throw IllegalArgumentException(ErrorMessages.WRONG_DATE_RANGE)}
         val date = Date(read_date.trim().toInt())
 
         output.printRequestOrder()
         val read_order = input.readLine()
         val order = Order(read_order)
 
-        return EventPlanner(date, order)
+        return EventPlanner(date, order, output)
     }
 }

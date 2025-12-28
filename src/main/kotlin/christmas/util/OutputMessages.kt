@@ -12,4 +12,8 @@ object OutputMessages {
     const val PROMPT_GIFT = "<증정 메뉴>"
     const val PROMPT_NONE = "없음"
     const val PROMPT_GIFT_YES = "샴페인 1개"
+    const val PROMPT_BENEFIT_LIST = "<혜택 내역>"
+    const val PROMPT_OPENING_DISCOUNT = "<총혜택 금액>"
+    const val PROMPT_OPENING_AFTER_DISCOUNT_PRICE = "<할인 후 예상 결제 금액>"
+    const val PROMPT_OPENING_BADGE = "<12월 이벤트 배지>"
 }

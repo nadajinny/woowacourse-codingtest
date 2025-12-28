@@ -11,4 +11,10 @@ interface OutputView {
     fun printOrder(menu: Menu, count: Int) {}
     fun printTotalPrice(totalPrice: Int) {}
     fun printGift(isGift : Boolean) {}
+    fun printOpeningBenefit() {}
+    fun printTotalBenefit(which: String, price: Int) {}
+    fun printNone() {}
+    fun printTotalDiscount(price : Int) {}
+    fun printAfterDiscountPrice(totalPrice: Int, discount: Int)
+    fun printBadget(badge: String)
 }
