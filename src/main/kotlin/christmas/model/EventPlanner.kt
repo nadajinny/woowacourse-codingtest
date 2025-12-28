@@ -58,4 +58,13 @@ class EventPlanner(
     fun GiftBenefit(): Int {
         return 25_000
     }
+
+    fun checkBadge(i : Int) : String {
+        return when {
+            i >= 20000 -> "산타"
+            i >= 10000 -> "트리"
+            i >= 5000 -> "별"
+            else -> "없음"
+        }
+    }
 }

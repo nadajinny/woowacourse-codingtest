@@ -8,4 +8,7 @@ object OutputMessages {
     const val PROMPT_OPENING_PRICE_BEFORE_DISCOUNT = "<할인 전 총주문 금액>"
     const val PROMPT_OPENING_IS_GIFT = "<증정 메뉴>"
     const val PROMPT_OPENING_BENEFIT_LIST = "<혜택 내역>"
+    const val PROMPT_OPENING_TOTAL_BENEFIT = "<총혜택 금액>"
+    const val PROMPT_OPENING_EXPECTED_PRICE = "<할인 후 예상 결제 금액>"
+    const val PROMPT_OPENING_BADGE = "<12월 이벤트 배지>"
 }

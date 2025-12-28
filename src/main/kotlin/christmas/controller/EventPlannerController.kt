@@ -32,13 +32,23 @@ class EventPlannerController(
         output.nextLine()
         BenefitPrice(benefit)
         output.nextLine()
-        ExpectedPrice()
+        ExpectedPrice(beforediscount, discount)
         output.nextLine()
-        EventBadge()
+        EventBadge(benefit, planner)
+    }
+    private fun ExpectedPrice(before: Int, discount: Int) {
+        output.printOpening(OutputMessages.PROMPT_OPENING_EXPECTED_PRICE)
+        output.printPrice(before-discount)
+    }
+
+    private fun EventBadge(benefit: Int, planner: EventPlanner) {
+        output.printOpening(OutputMessages.PROMPT_OPENING_BADGE)
+        output.printOpening(planner.checkBadge(benefit))
     }
 
     private fun BenefitPrice(price : Int) {
-        output.printOpening()
+        output.printOpening(OutputMessages.PROMPT_OPENING_TOTAL_BENEFIT)
+        output.printPrice(-price)
     }
 
     private fun BenefitList(planner: EventPlanner) : Pair<Int, Int> {
