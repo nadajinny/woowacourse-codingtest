@@ -1,5 +1,13 @@
 package baseball
 
+import baseball.controller.BaseballController
+import baseball.view.ConsoleInputView
+import baseball.view.ConsoleOutputView
+
 fun main() {
-    TODO("프로그램 구현")
+    val input = ConsoleInputView()
+    val output = ConsoleOutputView()
+
+    val controller = BaseballController(input, output)
+    controller.run()
 }
