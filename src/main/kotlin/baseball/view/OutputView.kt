@@ -1,7 +1,7 @@
 package baseball.view
 
 interface OutputView {
-    fun println(output: String) {}
-    fun print(output: String) {}
+    fun next_line(output: String) {}
+    fun current_line(output: String) {}
 
 }

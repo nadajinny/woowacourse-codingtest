@@ -6,5 +6,5 @@ object OutputMessages {
     const val STRIKE = "스트라이크"
     const val BALL = "볼"
     const val NOTHING = "낫싱"
-    const val RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
+    const val RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. 게임 종료"
 }

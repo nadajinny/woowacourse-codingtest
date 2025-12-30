@@ -1,11 +1,11 @@
 package baseball.view
 
 class ConsoleOutputView : OutputView {
-    override fun print(output: String) {
+    override fun current_line(output: String) {
         print(output)
     }
 
-    override fun println(output: String) {
+    override fun next_line(output: String) {
         println(output)
     }
 }
