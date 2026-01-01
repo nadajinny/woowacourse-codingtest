@@ -13,9 +13,19 @@ class ConsoleOutputView: OutputView {
         println()
         convenience.inventory.forEach { it ->
             var promotion = it.promotion
-            if (promotion == "null") promotion = "재고없음"
-            println("${it.name} ${DecimalFormat("#,###").format(it.price)} ${it.quantity} ${promotion}")
+            if (promotion == "null") promotion = ""
+            var quantity = it.quantity.toString() + "개"
+            if(it.quantity == 0) quantity = "재고 없음"
+            println("${it.name} ${DecimalFormat("#,###").format(it.price)} ${quantity} ${promotion}")
         }
+        println()
+    }
+
+    override fun purchase_guide() {
+        println("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])")
+    }
+
+    override fun next_line() {
         println()
     }
 }
