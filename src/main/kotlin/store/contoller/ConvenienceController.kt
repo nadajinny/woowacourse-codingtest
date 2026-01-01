@@ -14,7 +14,15 @@ class ConvenienceController(
         val inputPromotion = input.readPromotion()
 
         val convenience = Convenience(inputProduct, inputPromotion)
+        start_convenience(convenience)
+    }
 
+    private fun start_convenience(convenience: Convenience) {
+        output.opening()
+        show_inventory(convenience)
+    }
 
+    private fun show_inventory(convenience: Convenience) {
+        output.show_inventory(convenience)
     }
 }

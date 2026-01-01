@@ -2,7 +2,7 @@ package store.model
 
 class Convenience(products: MutableList<String>, promotions: MutableList<String>) {
     val inventory = mutableListOf<Product>()
-    val promotions = mutableListOf<Promotion>()
+    val promotion = mutableListOf<Promotion>()
     init {
         var i = true
         for (data in products) {
@@ -18,7 +18,7 @@ class Convenience(products: MutableList<String>, promotions: MutableList<String>
                 i = false
                 continue
             }
-            promotions.add(Promotion(data))
+            promotion.add(Promotion(data))
         }
     }
 }
