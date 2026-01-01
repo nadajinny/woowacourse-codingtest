@@ -7,18 +7,17 @@ class ConsoleOutputView: OutputView {
     override fun opening() {
         println("안녕하세요. W편의점입니다.")
     }
-
-    override fun show_inventory(convenience: Convenience) {
+    override fun opening_show_inventory() {
         println("현재 보유하고 있는 상품입니다.")
         println()
-        convenience.inventory.forEach { it ->
-            var promotion = it.promotion
-            if (promotion == "null") promotion = ""
-            var quantity = it.quantity.toString() + "개"
-            if(it.quantity == 0) quantity = "재고 없음"
-            println("${it.name} ${DecimalFormat("#,###").format(it.price)} ${quantity} ${promotion}")
-        }
-        println()
+    }
+
+    override fun show_inventory(name: String, price: Int, quantity: Int, promotion: String) {
+        var promotion = promotion
+        if (promotion == "null") promotion = ""
+        var quantity = quantity.toString() + "개"
+        if(quantity == "0개") quantity = "재고 없음"
+        println("${name} ${DecimalFormat("#,###").format(price)} ${quantity} ${promotion}")
     }
 
     override fun purchase_guide() {
@@ -27,5 +26,9 @@ class ConsoleOutputView: OutputView {
 
     override fun next_line() {
         println()
+    }
+
+    override fun Error(e: String) {
+        println(e)
     }
 }

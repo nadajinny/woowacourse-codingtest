@@ -1,10 +1,11 @@
 package store.contoller
 
 import store.model.Convenience
-import store.model.Product
 import store.model.Purchase
 import store.view.InputView
 import store.view.OutputView
+import camp.nextstep.edu.missionutils.DateTimes
+import java.time.chrono.ChronoLocalDateTime
 
 class ConvenienceController(
     private val input: InputView,
@@ -13,26 +14,27 @@ class ConvenienceController(
     fun run() {
         val inputProduct = input.readProduct()
         val inputPromotion = input.readPromotion()
-
-        val convenience = Convenience(inputProduct, inputPromotion)
-        start_convenience(convenience)
-    }
-
-    private fun start_convenience(convenience: Convenience) {
         output.opening()
-        show_inventory(convenience)
-        val purchase = parse_purchase()
+        val convenience = Convenience(inputProduct, inputPromotion, output)
+        while(true) {
+            try{
+                openConvenience(convenience)
+            }catch (e: IllegalArgumentException) {
+                output.Error(e.message!!)
+            }
+        }
     }
-
-    private fun parse_purchase() : MutableList<Purchase>  {
+    private fun openConvenience(convenience: Convenience) {
+        parse_purchase(convenience)
+        convenience.validate_purchase()
+    }
+    private fun parse_purchase(convenience: Convenience)  {
         output.purchase_guide()
         val purchaseInput = input.readLine()
-        val purchaseBox = mutableListOf<Purchase>()
+        val purchaseBox = convenience.checkPurchaseList(purchaseInput)
         output.next_line()
-        return purchaseBox
     }
 
-    private fun show_inventory(convenience: Convenience) {
-        output.show_inventory(convenience)
-    }
+
+
 }
