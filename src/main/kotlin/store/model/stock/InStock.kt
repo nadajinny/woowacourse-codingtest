@@ -14,10 +14,31 @@ class InStock(
                 .readLines()
                 .drop(1)
 
-            val map = lines.forEach {
-                val (name, price, count, promotion) = it.split(",")
+            val products = mutableListOf<Product>()
+
+            for(line in lines) {
+                val (name, price, count, promoName) = line.split(",")
+                val product = products.find{ it.name == name }
+
+                if(product == null) {
+                    products.add(
+                        Product(
+                            name,
+                            price.toInt(),
+                            count.toInt(),
+                            if(promoName!="null") count.toInt() else 0,
+                            promotion.find(promoName)
+                        )
+                    )
+                } else {
+                    product.totalCount += count.toInt()
+                    if(promoName != "null") {
+                        product.promotionCount += count.toInt()
+                        product.promotionType = promotion.find(promoName)
+                    }
+                }
             }
-            return InStock(map)
+            return InStock(products)
         }
     }
 

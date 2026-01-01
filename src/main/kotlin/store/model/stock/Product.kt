@@ -7,7 +7,7 @@ class Product(
     val price: Int,
     var totalCount: Int,
     var promotionCount: Int,
-    val promotionType: PromotionType?
+    var promotionType: PromotionType?
 ) {
 
 }
