@@ -1,4 +1,7 @@
 package store.model.cart
 
-class Item {
+class Item(
+    val name: String,
+    val count: Int
+) {
 }

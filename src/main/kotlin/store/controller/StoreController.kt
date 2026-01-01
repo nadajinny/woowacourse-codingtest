@@ -14,7 +14,10 @@ class StoreController {
     fun run() {
         do {
             try{
-
+                output.printWelcome()
+                inStock.showList()
+                val store = Store(promotion, inStock,input)
+                store.shopping()
             }catch(e: IllegalArgumentException) {
                 output.printError(e.message!!)
             }
