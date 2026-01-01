@@ -3,7 +3,7 @@
 ## 구현 순서
 
 ## 입력 로직
-- [ ] promotions.md 읽어오기
+- [x] promotions.md 읽어오기
 - [ ] products.md 읽어오기
 - [ ] controller에서 do while로 게속 입력받을 수 있도록 로직을 구성한다. 
 - [ ] 주문서 읽어오기
