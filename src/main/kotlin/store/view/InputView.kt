@@ -1,5 +1,6 @@
 package store.view
 
+import camp.nextstep.edu.missionutils.Console
 import store.model.Cart
 import store.model.Product
 import store.model.Promotion
@@ -10,7 +11,7 @@ import java.util.Locale
 
 class InputView {
     fun readPromotions(): MutableList<Promotion> {
-        val path = "../../resources/promotions.md"
+        val path = "src/main/resources/promotions.md"
         if(!File(path).exists()) IllegalArgumentException("[ERROR] 파일이 경로에 존재하지 않습니다.")
         val file = FileReader(path).readLines().drop(1)
         val promotions = mutableListOf<Promotion>()
@@ -29,7 +30,7 @@ class InputView {
     }
 
     fun readProducts(): MutableList<Product> {
-        val path = "../../resources/products.md"
+        val path = "src/main/resources/products.md"
         if(!File(path).exists()) IllegalArgumentException("[ERROR] 파일이 경로에 존재하지 않습니다.")
         val file = FileReader(path).readLines().drop(1)
         val products = mutableListOf<Product>()
@@ -46,6 +47,16 @@ class InputView {
     }
 
     fun readCarts(): MutableList<Cart> {
-
+        println("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])")
+        val s = Console.readLine()
+        val regex = Regex("""^\[(.+?)-(\d+)](,\[(.+?)-(\d+)])*$""")
+        require(regex.matches(s)) { "올바르지 않은 형식으로 입력했습니다. 다시 입력해 주세요." }
+        val file = s.split(",")
+        val carts = mutableListOf<Cart>()
+        file.forEach { text ->
+            val cartInfo = text.split("-")
+            carts.add(Cart(cartInfo[0],cartInfo[1].toIntOrNull() ?: 0))
+        }
+        return carts
     }
 }

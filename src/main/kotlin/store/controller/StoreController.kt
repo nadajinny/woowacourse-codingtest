@@ -10,9 +10,11 @@ class StoreController {
     fun run() {
         val store = Store(input.readPromotions(), input.readProducts())
         while(true) {
+            output.opening(store.products)
             try {
                 store.carts = input.readCarts()
                 store.checkCart() //Cart에서 점검해야할 요소 -> 상품에 있는지, 재고가 존재하는지
+
             }catch (e: IllegalArgumentException) {
                 output.printError(e.message!!)
             }
