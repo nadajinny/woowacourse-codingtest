@@ -1,13 +1,13 @@
 package store.model
 
-import java.util.Date
+import java.time.LocalDate
 
 
 class Promotion(
     val name: String,
     val buy: Int,
     val get: Int,
-    val startDate: Date,
-    val endDate: Date
+    val startDate: LocalDate,
+    val endDate: LocalDate
 ) {
 }

@@ -7,7 +7,7 @@ import store.model.Promotion
 import java.io.File
 import java.io.FileReader
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.time.LocalDate
 
 class InputView {
     fun readPromotions(): MutableList<Promotion> {
@@ -15,15 +15,14 @@ class InputView {
         if(!File(path).exists()) IllegalArgumentException("[ERROR] 파일이 경로에 존재하지 않습니다.")
         val file = FileReader(path).readLines().drop(1)
         val promotions = mutableListOf<Promotion>()
-        val DF = SimpleDateFormat("yyyy-MM-dd")
         file.forEach { text ->
             val promotionInfo = text.split(",")
             promotions.add(Promotion(
                 promotionInfo[0],
                 promotionInfo[1].toIntOrNull() ?: 0,
                 promotionInfo[2].toIntOrNull() ?: 0,
-                DF.parse(promotionInfo[3]),
-                DF.parse(promotionInfo[4])
+                LocalDate.parse(promotionInfo[3]),
+                LocalDate.parse(promotionInfo[4])
             ))
         }
         return promotions
@@ -54,9 +53,49 @@ class InputView {
         val file = s.split(",")
         val carts = mutableListOf<Cart>()
         file.forEach { text ->
-            val cartInfo = text.split("-")
+            val cartInfo = text.removePrefix("[").removeSuffix("]").split("-")
             carts.add(Cart(cartInfo[0],cartInfo[1].toIntOrNull() ?: 0))
         }
         return carts
+    }
+
+    fun askAddCart(name: String): Boolean {
+        println("현재 ${name}(는) 1개를 무료로 더 받을 수 있습니다. 추가하시겠습니까? (Y/N)")
+        val result = Console.readLine()
+        when {
+            result == "Y" -> return true
+            result == "N" -> return false
+        }
+        throw IllegalArgumentException("잘못된 입력입니다. 다시 입력해 주세요.")
+    }
+
+    fun askRemoveCart(name: String, minus: Int): Boolean {
+        println("현재 ${name} ${minus}개는 프로모션 할인이 적용되지 않습니다. 그래도 구매하시겠습니까? (Y/N)")
+        val result = Console.readLine()
+        when {
+            result == "Y" -> return true
+            result == "N" -> return false
+        }
+        throw IllegalArgumentException("잘못된 입력입니다. 다시 입력해 주세요.")
+    }
+
+    fun askMembership(): Boolean {
+        println("멤버십 할인을 받으시겠습니까? (Y/N)")
+        val result = Console.readLine()
+        when {
+            result == "Y" -> return true
+            result == "N" -> return false
+        }
+        throw IllegalArgumentException("잘못된 입력입니다. 다시 입력해 주세요.")
+    }
+
+    fun closing(): Boolean {
+        println("감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)")
+        val result = Console.readLine()
+        when {
+            result == "Y" -> return true
+            result == "N" -> return false
+        }
+        throw IllegalArgumentException("잘못된 입력입니다. 다시 입력해 주세요.")
     }
 }
