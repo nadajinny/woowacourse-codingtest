@@ -1,9 +1,13 @@
 package store.model
 
-class Store {
-    private val carts = mutableListOf<Cart>()
-    private val products = mutableListOf<Product>()
-    private val promotions = mutableListOf<Promotion>()
+class Store (
+    val promotions: MutableList<Promotion>,
+    val products: MutableList<Product>
+){
+    var carts = mutableListOf<Cart>()
 
+    fun checkCart() {
+
+    }
 
 }
