@@ -15,7 +15,7 @@ class InputView {
         names.forEach { text ->
             result.add(Coach(text.trim()))
         }
-
+        println()
         return result
     }
 

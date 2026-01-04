@@ -26,8 +26,8 @@ class Menu {
     fun categoryChoice() {
         var category: String
         do {
-            category = categories[Randoms.pickNumberInRange(1, 5)]
-        } while(dayCategories.filter{it == category}.size < 2)
+            category = categories[Randoms.pickNumberInRange(1, 5)-1]
+        } while(dayCategories.filter{it == category}.size >= 2)
         dayCategories.add(category)
         menuChoice(category)
     }
@@ -50,7 +50,7 @@ class Menu {
         var menu: String
         do {
             menu = Randoms.shuffle(menus)[0]
-        } while(!coach.alreadyAte(menu)&&!coach.cannotEat(menu))
+        } while(coach.alreadyAte(menu)||coach.cannotEat(menu))
         coach.addMenu(menu)
     }
 
