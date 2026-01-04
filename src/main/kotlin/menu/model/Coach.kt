@@ -3,8 +3,12 @@ package menu.model
 class Coach(
     val name: String
 ) {
-   private val menu = mutableListOf<String>()
+    val menu = mutableListOf<String>()
    private val nope = mutableListOf<String>()
+
+    init {
+        require(name.length in 2..4) { "[ERROR] 코치는 최소 2명 이상 입력해야 합니다." }
+    }
 
     fun alreadyAte(food: String): Boolean { //이미 배정이 된 상태
         if(menu.contains(food)) return true

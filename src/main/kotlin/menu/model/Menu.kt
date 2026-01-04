@@ -9,9 +9,13 @@ class Menu {
     private val asianFood = listOf<String>("팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜")
     private val westernFood = listOf<String>("라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니")
 
-    private val categories = listOf<String>("일식", "한식", "중식", "아시안", "양식")
-    private val dayCategories = mutableListOf<String>()
-    private val coaches = listOf<Coach>()
+    val categories = listOf<String>("일식", "한식", "중식", "아시안", "양식")
+    val dayCategories = mutableListOf<String>()
+    var coaches = listOf<Coach>()
+
+    fun restoreCoachInfo(info : List<Coach>) {
+        coaches = info
+    }
 
     fun runWeeklyMenu()  {
         for (i in 1..5) {
